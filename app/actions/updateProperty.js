@@ -22,6 +22,7 @@ async function updateProperty(propertyId, formData) {
 
   const propertyData = {
     type: formData.get('type'),
+    is_featured: formData.get('is_featured'),
     name: formData.get('name'),
     description: formData.get('description'),
     location: {
