@@ -50,6 +50,18 @@ async function addProperty(formData) {
         },
     };
 
+        // Check for an existing property with the same name and location
+    const existingProperty = await Property.findOne({
+        name: propertyData.name,
+        'location.city': propertyData.location.city,
+        'location.state': propertyData.location.state,
+        'location.zipcode': propertyData.location.zipcode,
+    });
+
+    if (existingProperty) {
+        throw new Error('Property already exists in this location');
+    }
+
     const imageUrls = [];
 
     for (const imageFile of images) {
